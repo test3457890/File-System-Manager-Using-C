@@ -44,21 +44,6 @@ static int valid_name(const char *s) {
     for (; *s; s++) if (*s == '/' || *s == '\\' || (unsigned char)*s < 32) return 0;
     return 1;
 }
-static Node *resolve(const char *path) {
-    if (!path || !*path) return cwd;
-    Node *at = (*path == '/') ? root : cwd;
-    char *copy = malloc(strlen(path) + 1);
-    if (!copy) return NULL;
-    strcpy(copy, path);
-    for (char *p = strtok(copy, "/"); p; p = strtok(NULL, "/")) {
-        if (!strcmp(p, ".")) continue;
-        if (!strcmp(p, "..")) { if (at->parent) at = at->parent; continue; }
-        if (!at->directory || !(at = child(at, p))) break;
-    }
-    /* A missing component must not resolve to its parent. */
-    free(copy);
-    return at;
-}
 static Node *lookup(const char *path) {
     if (!path || !*path) return NULL;
     Node *at = (*path == '/') ? root : cwd;
@@ -107,7 +92,7 @@ static int add_entry(const char *path, int directory) {
 }
 static int remove_entry(const char *path) {
     Node *n = lookup(path);
-    if (!n || n == root || n->directory && n->children) return 0;
+    if (!n || n == root || (n->directory && n->children)) return 0;
     Node **link = &n->parent->children;
     while (*link && *link != n) link = &(*link)->next;
     if (!*link) return 0;
@@ -188,7 +173,7 @@ int main(void) {
         else if ((!strcmp(cmd, "ls") || !strcmp(cmd, "tree")) && !b) {
             Node *n = a ? lookup(a) : cwd;
             if (!n || !n->directory) puts("Error: directory not found");
-            else tree(n, !strcmp(cmd, "tree") ? 0 : 0);
+            else tree(n, 0);
         } else if (!strcmp(cmd, "cd") && a && !b) {
             Node *n = lookup(a);
             if (!n || !n->directory) puts("Error: directory not found");
