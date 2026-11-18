@@ -21,3 +21,11 @@ jobs:
           grep -q 'Moved' output.txt
           grep -q 'Removed' output.txt
           ! grep -q '^Error:' output.txt
+      - name: Check rejected operations and navigation
+        run: |
+          printf 'mkdir alpha\nmkdir alpha\ncd alpha\ntouch a.txt\nrm .\ncd ..\nrm alpha\nmkdir beta\nmv beta beta\ncd missing\ncd alpha\npwd\nquit\n' | ./file_manager > negative.txt
+          grep -q 'Error: invalid path or duplicate name' negative.txt
+          grep -q 'Error: not found, root, or nonempty directory' negative.txt
+          grep -q 'Error: invalid destination or cycle' negative.txt
+          grep -q 'Error: directory not found' negative.txt
+          grep -q '^/alpha$' negative.txt
