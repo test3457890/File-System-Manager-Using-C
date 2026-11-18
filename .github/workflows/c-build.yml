@@ -28,4 +28,4 @@ jobs:
           grep -q 'Error: not found, root, or nonempty directory' negative.txt
           grep -q 'Error: invalid destination or cycle' negative.txt
           grep -q 'Error: directory not found' negative.txt
-          grep -q '^/alpha$' negative.txt
+          grep -q 'fs> /alpha' negative.txt
