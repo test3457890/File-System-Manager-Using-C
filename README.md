@@ -47,6 +47,10 @@ cc -std=c11 -Wall -Wextra -pedantic -o file_manager src/file_manager.c
 
 On Windows using MinGW, compile with `gcc -std=c11 -Wall -Wextra -pedantic -o file_manager.exe src/file_manager.c` and run `.\file_manager.exe`.
 
+### Repeatable checks
+
+Python 3 is needed for the CLI regression script. After compiling, run `python3 tests/cli.py ./file_manager` (on Windows, use `python tests/cli.py .\\file_manager.exe`). It checks exact output for navigation, moves, rejected operations, maximum name length, and recovery after an overlong command. GitHub Actions compiles with AddressSanitizer and UndefinedBehaviorSanitizer and runs these checks on Ubuntu; the program itself has no Python dependency.
+
 ### Example session
 
 ```text
