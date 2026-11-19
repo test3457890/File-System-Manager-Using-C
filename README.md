@@ -6,7 +6,7 @@
 
 **A command-line, in-memory file system built in C to demonstrate how directories, file entries, trees, linked lists, and pointers work together.**
 
-This is an educational project associated with CS315 data structures coursework. It models a file system **inside the program's memory**: it does not manage real files on your computer.
+This CS 315 data structures project stores a virtual directory tree and file entries in memory. Changes disappear when you exit. The maintained CLI lives in `src/file_manager.c`.
 
 ## Why this project exists
 
@@ -24,7 +24,7 @@ File systems provide a practical way to explore foundational data structures. In
 
 ## Quick start
 
-Requires a C11 compiler (GCC or Clang).
+Requires a C11 compiler such as GCC or Clang. Build from the repository root using the commands below. The [getting started guide](docs/Getting-Started.md) covers setup, and the [GitHub Actions workflow](.github/workflows/c-build.yml) shows the smoke tests.
 
 ```bash
 git clone https://github.com/test3457890/File-System-Manager-Using-C.git
