@@ -114,6 +114,8 @@ See the [roadmap](docs/Roadmap.md) for potential future improvements. These item
 
 ## Documentation
 
+Start with the [GitHub Wiki](https://github.com/test3457890/File-System-Manager-Using-C/wiki) for a guide to the project docs.
+
 - [Documentation home](docs/README.md)
 - [Getting started](docs/Getting-Started.md)
 - [Architecture and data structures](docs/Architecture.md)
