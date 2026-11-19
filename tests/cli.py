@@ -59,4 +59,14 @@ check(
      "Names cannot contain spaces; rm only removes empty directories.", ""],
 )
 
-print("PASS: CLI paths, moves, rejection cases, name limits, and long-command recovery")
+check(
+    ["touch file", "mkdir file/../surprise", "cd file/..", "rm file/.",
+     "rm file/", "mkdir docs", "touch docs/note", "cd docs/../", "pwd",
+     "tree /", "quit"],
+    ["File created", "Error: invalid path or duplicate name",
+     "Error: directory not found", "Error: not found, root, or nonempty directory",
+     "Error: not found, root, or nonempty directory", "Directory created",
+     "File created", "", "/", "file\ndocs/\n  note", ""],
+)
+
+print("PASS: CLI paths, moves, rejection cases, file traversal, name limits, and long-command recovery")

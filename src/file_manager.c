@@ -51,12 +51,13 @@ static Node *lookup(const char *path) {
     if (!copy) return NULL;
     strcpy(copy, path);
     for (char *p = strtok(copy, "/"); p; p = strtok(NULL, "/")) {
+        if (!at->directory) { at = NULL; break; }
         if (!strcmp(p, ".")) continue;
         if (!strcmp(p, "..")) { if (at->parent) at = at->parent; continue; }
-        if (!at->directory) { at = NULL; break; }
         at = child(at, p);
         if (!at) break;
     }
+    if (at && !at->directory && path[strlen(path) - 1] == '/') at = NULL;
     free(copy);
     return at;
 }
