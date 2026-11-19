@@ -8,6 +8,18 @@
 
 This CS 315 data structures project stores a virtual directory tree and file entries in memory. Changes disappear when you exit. The maintained CLI lives in `src/file_manager.c`.
 
+## Screenshots
+
+These terminal images use output from the compiled C program. The commands operate on a fresh in-memory file system with sample paths. [View all 5 screenshots](docs/screenshots/README.md).
+
+| Build a folder hierarchy | Rename and move a file |
+| --- | --- |
+| [![Build a folder hierarchy](docs/screenshots/folder-hierarchy.webp)](docs/screenshots/folder-hierarchy.webp) | [![Rename and move a file](docs/screenshots/reorganizing-files.webp)](docs/screenshots/reorganizing-files.webp) |
+
+| Reject deletion of a nonempty directory |  |
+| --- | --- |
+| [![Reject deletion of a nonempty directory](docs/screenshots/protected-directory.webp)](docs/screenshots/protected-directory.webp) |  |
+
 ## Why this project exists
 
 File systems provide a practical way to explore foundational data structures. Instead of only drawing a tree or writing a linked-list exercise, this project combines them into a small, interactive system. The goal is to practice dynamic memory allocation, pointer relationships, traversal, searching, and safe updates to a hierarchy.
